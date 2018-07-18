@@ -9,7 +9,6 @@ Created on Tue Jul 10 20:37:06 2018
 from birdy.twitter import UserClient
 import urllib
 import emoji
-import time
 import textwrap
 
 client = UserClient(CONSUMER_KEY,
@@ -23,8 +22,6 @@ idfile = open(printHist, 'r')
 ids = idfile.readlines()
 idfile.close()
 
-n = 0
-k= True
 TWURL = 'http://127.0.0.1/type?'
 
 
