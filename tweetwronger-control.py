@@ -24,17 +24,14 @@ def index():
     return render_template('index.html', status = tc.port.isOpen())
 
 @app.route('/findports')
-def findports():
-    
-    ports=[port.device for port in tc.serial.tools.list_ports.comports() if port[2] != 'n/a']
-            
+def findports():    
+    ports=[port.device for port in tc.serial.tools.list_ports.comports() if port[2] != 'n/a']            
     return  render_template('findports.html', ports = ports)
 
 @app.route('/connect')
 def connect():
     tc.portname  = request.args.get('port', '')
     tc.portopen()
-
     return render_template('connect.html', success = tc.TWconnect(),  url = url_for('index'))
     
 @app.route('/disconnect')
@@ -51,8 +48,6 @@ def twtype():
             text += line +'\n'
     else:
         text = request.args.get('text', '')
-        
-        
     if request.args.get('strength', ''):
         tc.TWtype(text,
                   bold = request.args.get('bold', ''),
@@ -64,7 +59,6 @@ def twtype():
           underline = request.args.get('underline', ''))
     return render_template('type.html')
 
-
 @app.route('/move')
 def move():
     x = request.args.get('x', '0')
@@ -75,11 +69,6 @@ def move():
         y = 0
     tc.TWmove(int(x), int(y),)    
     return render_template('move.html')
-
-
-if __name__ == '__main__':
-   webbrowser.open_new('http://127.0.01')
-   app.run(host = '0.0.0.0', port =80)
 
 @app.route('/setwidth')
 def setwidth():

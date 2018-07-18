@@ -54,9 +54,7 @@ def TWsend(data):
                 raise NameError('Port not responding')
             port.rts = False
             port.rts = True
-        
-        #time.sleep(0.005)
-        
+    
 def TWrec(n):
     return port.read(n)
 
@@ -186,7 +184,7 @@ def TWtypeindex(ch, strength, right = True, move = True):
             position += width
         else:
             position -= width 
-    
+#high level typewriter functions    
 def TWtype(data,strength = 20 , bold = False, underline = False):
     data = str(data)
     data= list(data)
@@ -212,7 +210,7 @@ def TWtype(data,strength = 20 , bold = False, underline = False):
             if underline:                
                 TWtypeindex(wheel.index('_') + 1, strength)
                 
-                
+     #code for testing           
 if 0:
     portname = 'COM3'
     portopen()
