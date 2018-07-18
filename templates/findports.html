@@ -1,0 +1,15 @@
+<head><title>control for old Triumph Adler electronic typewriter</title></head>
+<body>
+
+click connect on the name of the serial port that the tyewriter is connected to<p>
+Turn on the typewriter<p>
+On the typewriter, press the TW/M key (top right, second from end)<p>
+On the typewriter, press 7<p>
+    <ul>
+    {% for port in ports %}
+      <li><a href="/connect?port={{ port }}">{{port}}</a></li>
+{% endfor %} 
+    </ul>
+    
+</body>
+    
