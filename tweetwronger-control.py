@@ -76,7 +76,7 @@ def setwidth():
     if not w:
         w = 12
     tc.TWsetwidth(int(w))    
-    return render_template('index.html', status = tc.port.isOpen())
+    return render_template('setwidth.html')
 
 if __name__ == '__main__':
    webbrowser.open_new('http://127.0.01')

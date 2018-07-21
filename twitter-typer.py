@@ -10,11 +10,17 @@ from birdy.twitter import UserClient
 import urllib
 import emoji
 import textwrap
+import datetime
+import os
+import sys
+
 
 client = UserClient(CONSUMER_KEY,
                     CONSUMER_SECRET,
                     ACCESS_TOKEN,
                     ACCESS_TOKEN_SECRET)
+
+os.chdir(os.path.dirname(sys.argv[0]))
 
 printHist = 'tweets.txt'
 mentionee = 'twitertypetest'
@@ -25,8 +31,8 @@ idfile.close()
 TWURL = 'http://127.0.0.1/type?'
 
 
-
-print('here we go again')
+print('\n')
+print(str(datetime.datetime.time()))
 ret = client.api.search.tweets.get(q=mentionee,f='tweets', count = 100)
 data = ret.data.statuses
 print ('number of tweets found: ', len(data))
