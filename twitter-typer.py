@@ -32,7 +32,7 @@ TWURL = 'http://127.0.0.1/type?'
 
 
 print('\n')
-print(str(datetime.datetime.time()))
+print(str(datetime.datetime.now()))
 ret = client.api.search.tweets.get(q=mentionee,f='tweets', count = 100)
 data = ret.data.statuses
 print ('number of tweets found: ', len(data))
