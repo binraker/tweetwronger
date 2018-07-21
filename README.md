@@ -8,6 +8,6 @@ http://www.stcarchiv.de/stc1988/07/gabriele-9009-1
 and:
 http://www.stcarchiv.de/stc1988/08/gabriele-9009-2
 
-more info in the tweetwronger.docx file
+more info in the file: https://docs.google.com/document/d/15kNGhSe-AKXMzRQvbeOJih6rJQuM9lxPv2xkrmP1B_I/edit?usp=sharing 
 
 TODO make this README more useful!!
