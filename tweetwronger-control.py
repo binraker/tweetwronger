@@ -12,7 +12,6 @@ Created on Wed Jul  4 20:56:42 2018
 from flask import Flask, render_template, request, url_for
 
 import typecontrol as tc
-import webbrowser
 import textwrap
 
 app = Flask(__name__)

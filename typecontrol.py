@@ -33,20 +33,20 @@ def portclose():
 #low level typewiter functions
 def TWsend(data):
     for byte in data:
-        n = 200
+        n = 600
         while not port.cts :
             time.sleep(0.005)
             n -= 1
             if n < 0:
                 raise NameError('Port not responding')
         port.write(byte)
-        n=200
+        n=600
         while port.cts :
             time.sleep(0.005)
             n -= 1
             if n < 0:
                 raise NameError('Port not responding')        
-        n = 200
+        n = 600
         while not port.cts:
             time.sleep(0.005)
             n -= 1
