@@ -40,7 +40,7 @@ def disconnect():
 
 @app.route('/type')
 def twtype():
-    if tc.port.is_open():
+    if tc.port.is_open:
         if request.args.get('wrap',''):
             lines = textwrap.wrap(request.args.get('text', ''),int(request.args.get('width', '70')))
             text = ''
@@ -61,7 +61,7 @@ def twtype():
 
 @app.route('/move')
 def move():
-    if tc.port.is_open():
+    if tc.port.is_open:
         x = request.args.get('x', '0')
         y = request.args.get('y', '0')
         if not x:
@@ -73,7 +73,7 @@ def move():
 
 @app.route('/setwidth')
 def setwidth():
-    if tc.port.is_open():
+    if tc.port.is_open:
         w = request.args.get('width', '12')
         if not w:
             w = 12
