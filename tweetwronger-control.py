@@ -40,41 +40,44 @@ def disconnect():
 
 @app.route('/type')
 def twtype():
-    if request.args.get('wrap',''):
-        lines = textwrap.wrap(request.args.get('text', ''),int(request.args.get('width', '70')))
-        text = ''
-        for line in lines:
-            text += line +'\n'
-    else:
-        text = request.args.get('text', '')
-    if request.args.get('strength', ''):
-        tc.TWtype(text,
-                  bold = request.args.get('bold', ''),
-                  underline = request.args.get('underline', ''),
-                  strength = int(request.args.get('strength', '')))
-    else:
-        tc.TWtype(text,
-          bold = request.args.get('bold', ''),
-          underline = request.args.get('underline', ''))
+    if tc.port.is_open():
+        if request.args.get('wrap',''):
+            lines = textwrap.wrap(request.args.get('text', ''),int(request.args.get('width', '70')))
+            text = ''
+            for line in lines:
+                text += line +'\n'
+        else:
+            text = request.args.get('text', '')
+        if request.args.get('strength', ''):
+            tc.TWtype(text,
+                      bold = request.args.get('bold', ''),
+                      underline = request.args.get('underline', ''),
+                      strength = int(request.args.get('strength', '')))
+        else:
+            tc.TWtype(text,
+              bold = request.args.get('bold', ''),
+              underline = request.args.get('underline', ''))
     return render_template('type.html')
 
 @app.route('/move')
 def move():
-    x = request.args.get('x', '0')
-    y = request.args.get('y', '0')
-    if not x:
-        x = 0
-    if not y:
-        y = 0
-    tc.TWmove(int(x), int(y),)    
+    if tc.port.is_open():
+        x = request.args.get('x', '0')
+        y = request.args.get('y', '0')
+        if not x:
+            x = 0
+        if not y:
+            y = 0
+        tc.TWmove(int(x), int(y),)    
     return render_template('move.html')
 
 @app.route('/setwidth')
 def setwidth():
-    w = request.args.get('width', '12')
-    if not w:
-        w = 12
-    tc.TWsetwidth(int(w))    
+    if tc.port.is_open():
+        w = request.args.get('width', '12')
+        if not w:
+            w = 12
+        tc.TWsetwidth(int(w))    
     return render_template('setwidth.html')
 
 if __name__ == '__main__':
