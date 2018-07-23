@@ -21,13 +21,13 @@ client = UserClient(CONSUMER_KEY,
                     ACCESS_TOKEN_SECRET)
 
 os.chdir(os.path.dirname(sys.argv[0]))
-if not os.path.isfile('lock'):
+if not os.path.isfile('tweetlock'):
     
-    f = open('lock','w+')
+    f = open('tweetlock','w+')
     f.close()
     
     printHist = 'tweets.txt'
-    mentionee = 'twitertypetest'
+    mentionee = 'tweetwronger'
     idfile = open(printHist, 'r')
     ids = idfile.readlines()
     idfile.close()
@@ -43,7 +43,11 @@ if not os.path.isfile('lock'):
     idfile = open(printHist, 'a')
     for entry in data:
         tweetid = entry['id_str'] + '\n'
-        if( not entry['user']['name'] == mentionee) and (not tweetid in ids):
+        typetweet = False
+        typetweet |= not tweetid in ids
+        for hashtag in entry['entities']['hashtags']:
+            typetweet |= (hashtag['text']).lower() == 'typethis'
+        if typetweet:
             user = entry['user']['screen_name']
             text = emoji.demojize(entry['text'])
             print(user, text)
@@ -64,5 +68,4 @@ if not os.path.isfile('lock'):
             except:
                 print('error sending tweet to typewriter')       
     idfile.close()
-    os.remove('lock')    
-
+    os.remove('tweetlock')    
