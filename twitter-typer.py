@@ -71,10 +71,11 @@ if not os.path.isfile('tweetlock'):
                         f = urllib.request.urlopen(settings.TWURL + urllib.parse.urlencode({'text': (' ' * (len(user) + 3))}))
                     multiline = True
                     f = urllib.request.urlopen(settings.TWURL + urllib.parse.urlencode({'text': line + '\n'}))
-                f = urllib.request.urlopen(settings.TWURL + urllib.prse.urlencode({'text': '\n'}))
+                f = urllib.request.urlopen(settings.TWURL + urllib.parse.urlencode({'text': '\n'}))
                 ids.append(tweetid)
                 idfile.write(tweetid)
-            except:
+            except Exception as inst:
+                print(inst)
                 print('error sending tweet to typewriter')       
     idfile.close()
     os.remove('tweetlock')

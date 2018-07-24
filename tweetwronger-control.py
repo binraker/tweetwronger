@@ -9,7 +9,7 @@ Created on Wed Jul  4 20:56:42 2018
 #
 #import serial.tools.list_ports
 
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, abort
 
 import typecontrol as tc
 import textwrap
@@ -39,7 +39,7 @@ def disconnect():
     return render_template('disconnect.html', url = url_for('index'))
 
 @app.route('/type')
-def twtype():
+def twtype():  
     if tc.port.is_open:
         if request.args.get('wrap',''):
             lines = textwrap.wrap(request.args.get('text', ''),int(request.args.get('width', '70')))
@@ -56,7 +56,10 @@ def twtype():
         else:
             tc.TWtype(text,
               bold = request.args.get('bold', ''),
-              underline = request.args.get('underline', ''))
+              underline = request.args.get('underline', ''))    
+        return render_template('type.html')
+    else:
+        abort(503)
     return render_template('type.html')
 
 @app.route('/move')
